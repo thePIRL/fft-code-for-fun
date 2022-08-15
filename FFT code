@@ -1,0 +1,38 @@
+##FFT code from https://youtu.be/R_4GuyJTzMo
+
+## Python code
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy
+import cmath
+
+n = 30
+t = np.arange(0,2*np.pi,2*np.pi/n)
+f = np.sin(t)
+F = scipy.fft(f)
+
+plt.subplot(2, 1, 1)
+plt.scatter(t,f,marker='o')
+plt.subplot(2, 1, 2)
+plt.scatter(range(0,len(F)),F.real,marker='o',color='green')
+plt.scatter(range(0,len(F)),F.imag,marker='o',color='purple')
+#plt.scatter(range(0,len(F)),np.abs(F),marker='o',color='blue')
+plt.show()
+
+
+
+
+## R code
+n = 30
+t = seq(0,2*pi,length=n+1)[1:30]
+f = sin(t)
+F = fft(f)
+
+par(mfrow=c(2,1),mar=c(2,2,1,1),bg='black')
+plot(t,s,pch=19,col='white',cex=2)
+axis(1,col='white',lwd=2,at=t);axis(2,col='white',lwd=2)
+abline(h=0,col='white')
+plot(Re(F),pch=19,ylim=c(-n/2,n/2),col=rgb(.2,1,.2),cex=2)
+points(Im(F),pch=19,ylim=c(-n/2,n/2),col=rgb(.6,.3,1),cex=2)
+#points(Mod(F),pch=19,ylim=c(-n/2,n/2),col=rgb(1,1,1),cex=2)
+axis(1,col='white',lwd=2,at=1:n);axis(2,col='white',lwd=2);
